@@ -14,7 +14,7 @@
          name: httpd
          state: started
      - name: Deploy static website
-      copy:
+       copy:
         src: index.html
         dest: /var/www/html/
      - name: installation of java
