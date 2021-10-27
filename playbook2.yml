@@ -1,0 +1,21 @@
+---
+ - name: playbook1
+   hosts: all
+   become: yes
+   tasks: 
+     
+     - name: tomcat file downloading
+       get_url:
+         url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.72/bin/apache-tomcat-8.5.72.tar.gz
+         dest: /opt/
+     - name: unzip tomcat file
+       unarchive: 
+           src: /opt/apache-tomcat-8.5.72.tar.gz
+           dest: /opt/
+           remote_src: yes
+     - name: installation of java
+       command: yum install java -y
+     #- name: starting tomcat service
+      # command: ./apache-tomcat-8.5.72.tar.gz
+     - name: starting the service
+       shell: nohup /opt/apache-tomcat-8.5.72/bin/startup.sh 
